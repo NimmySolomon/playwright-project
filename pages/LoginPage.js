@@ -8,7 +8,7 @@ class LoginPage {
     this.emailInput    = page.locator('[data-qa="login-email"]')
     this.passwordInput = page.locator('[data-qa="login-password"]')
     this.loginButton   = page.locator('[data-qa="login-button"]')
-    this.errorMessage  = page.locator('p:has-text("Your email or password is incorrect")')
+    this.errorMessage = page.locator('.login-form').locator('p')
   }
 
   // Action 1 - go to login page
