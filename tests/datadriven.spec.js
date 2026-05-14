@@ -1,40 +1,38 @@
 const { test, expect } = require('@playwright/test')
-const { LoginPage } = require('../pages/LoginPage')
 
-// Test data — list of users to test
 const testUsers = [
-  { 
-    email: 'wrong1@test.com',  
-    password: 'wrongpass1',  
+  {
+    email: 'wrong1@test.com',
+    password: 'wrongpass1',
     description: 'wrong email and password'
   },
-  { 
-    email: 'wrong2@test.com',  
-    password: 'wrongpass2',  
+  {
+    email: 'wrong2@test.com',
+    password: 'wrongpass2',
     description: 'another wrong email'
   },
-  { 
-    email: 'invalid-email',    
-    password: 'pass123',     
+  {
+    email: 'invalidemail',
+    password: 'pass123',
     description: 'invalid email format'
   },
 ]
 
-// ONE test runs for EACH user in the list!
 for (const user of testUsers) {
 
   test(`login fails for → ${user.description}`, async ({ page }) => {
 
-    const loginPage = new LoginPage(page)
+    await page.goto('https://automationexercise.com/login')
+    await page.waitForTimeout(2000)
 
-    // Go to login page
-    await loginPage.goto()
+    await page.locator('[data-qa="login-email"]').fill(user.email)
+    await page.locator('[data-qa="login-password"]').fill(user.password)
+    await page.locator('[data-qa="login-button"]').click()
+    await page.waitForTimeout(2000)
 
-    // Try to login with this user's details
-    await loginPage.login(user.email, user.password)
-
-    // All should fail — check error message
-    this.errorMessage = page.locator('.login-form p')
+    // Check we are still on login page — means login failed!
+    await expect(page).toHaveURL(/login/)
+    console.log(`✅ Correctly rejected: ${user.description}`)
 
   })
 
