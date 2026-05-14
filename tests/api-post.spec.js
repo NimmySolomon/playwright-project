@@ -10,8 +10,8 @@ test('create new user via API', async () => {
     'https://automationexercise.com/api/createAccount',
     {
       form: {
-        name:           'Nimmy Thomas',
-        email:          'nimmyapi123@test.com',
+        name:           'Nimmy Solomon',
+        email: 'nimmy' + Date.now() + '@test.com',
         password:       'Test@1234',
         title:          'Mrs',
         birth_date:     '1',

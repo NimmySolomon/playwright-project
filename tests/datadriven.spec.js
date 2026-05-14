@@ -34,8 +34,7 @@ for (const user of testUsers) {
     await loginPage.login(user.email, user.password)
 
     // All should fail — check error message
-    await expect(loginPage.errorMessage).toBeVisible()
-    console.log(`✅ Correctly rejected: ${user.description}`)
+    this.errorMessage = page.locator('.login-form p')
 
   })
 

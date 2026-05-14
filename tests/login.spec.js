@@ -7,7 +7,7 @@ test('login with valid credentials', async ({ page }) => {
   await page.waitForTimeout(2000)
 
   // Step 2 - Fill email
-  await page.locator('[data-qa="login-email"]').fill('nimmy123@gmail.com')
+  await page.locator('[data-qa="signup-email"]').fill('nimmy19@gmail.com')
   await page.waitForTimeout(1000)
 
   // Step 3 - Fill password

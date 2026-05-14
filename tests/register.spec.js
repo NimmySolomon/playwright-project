@@ -11,7 +11,7 @@ test('register new account', async ({ page }) => {
   await page.waitForTimeout(1000)
 
   // Step 3 - Fill email (use a unique email every time!)
-  await page.locator('[data-qa="signup-email"]').fill('nimmy12@gmail.com')
+  await page.locator('[data-qa="signup-email"]').fill('nimmy' + Date.now() + '@gmail.com')
   await page.waitForTimeout(1000)
 
   // Step 4 - Click Signup button
